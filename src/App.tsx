@@ -1,12 +1,11 @@
-import { Text } from '@radix-ui/themes';
+import { Flex } from '@radix-ui/themes';
 import CharacterList from './components/Character/CharacterList';
 
 function App() {
 	return (
-		<>
-			<Text>Rick and Morty Character</Text>
+		<Flex direction={'column'}>
 			<CharacterList />
-		</>
+		</Flex>
 	);
 }
 
