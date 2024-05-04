@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getAllCharacters } from '../../api/getCharacters.service';
 import { Grid } from '@radix-ui/themes';
 import CharacterCard from './CharacterCard';
+import SkeletonCharacterComponent from './SkeletonCharacterComponent';
 
 function CharacterList() {
 	interface Character {
@@ -19,8 +20,13 @@ function CharacterList() {
 		setCharacter(response.data.results);
 	};
 
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		fetchCharacter();
+		setTimeout(() => {
+			setLoading(false);
+		}, 1500);
 	}, []);
 	return (
 		<>
@@ -28,9 +34,13 @@ function CharacterList() {
 				gap={'1'}
 				columns={{ initial: '1', xs: '2', md: '3', lg: '4' }}
 			>
-				{characters.map((character) => (
-					<CharacterCard key={character.id} {...character} />
-				))}
+				{characters.map((character) =>
+					loading ? (
+						<SkeletonCharacterComponent key={character.id} />
+					) : (
+						<CharacterCard key={character.id} {...character} />
+					)
+				)}
 			</Grid>
 		</>
 	);

@@ -9,10 +9,8 @@ import Navbar from './components/generics/Navbar.tsx';
 CharacterInterceptor();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<React.StrictMode>
-		<Theme appearance='light'>
-			<Navbar />
-			<App />
-		</Theme>
-	</React.StrictMode>
+	<Theme appearance='light'>
+		<Navbar />
+		<App />
+	</Theme>
 );
